@@ -58,7 +58,7 @@ class RewardFunction:
         """
         # self.traj.append(pos)
 
-        terminated = False
+        truncated = False
         self.step_counter += 1  # step counter to enable failure counter
         min_dist = np.inf  # smallest distance found so far in the trajectory to the target pos
         index = self.cur_idx  # cur_idx is where we were last step in the trajectory
@@ -105,14 +105,14 @@ class RewardFunction:
             if self.step_counter > self.min_nb_steps_before_failure:
                 self.failure_counter += 1
                 if self.failure_counter > self.nb_zero_rew_before_failure:
-                    terminated = True
+                    truncated = True
 
         else:  # if we did progress on the track
             self.failure_counter = 0  # we reset the counter triggering episode termination
 
         self.cur_idx = best_index  # finally, we save our new best matching index
 
-        return reward, terminated
+        return reward, truncated
 
     def reset(self):
         """
