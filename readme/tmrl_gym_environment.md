@@ -341,7 +341,7 @@ obs, reward, terminated, truncated, info = env.step(action)
 
 **Detecting Track Completion:**
 
-The `reached_finishline` flag in the info dictionary returned by `env.step()` is the only way to determine if the run finished by **track completion**. When `info['reached_finishline'] = True`, the agent has reached the finish line. This is consistent with standard Gym environment conventions:
+The `reached_finishline` flag in the info dictionary returned by `env.step()` can be used to determin if the run finished by **track completion**. When `info['reached_finishline'] = True`, the agent has reached the finish line.
 ```python
 obs, reward, terminated, truncated, info = env.step(action)
 if info['reached_finishline']:
